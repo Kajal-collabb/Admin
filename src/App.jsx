@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Login from "./admin/pages/Login";
 import Dashboard from "./admin/pages/Dashboard";
 import Users from "./admin/pages/Users";
@@ -35,15 +34,9 @@ function Layout({ children }) {
 }
 
 function App() {
-
   return (
-
     <BrowserRouter>
-
       <Routes>
-
-        {/* Login */}
-
         <Route path="/" element={<Login />} />
 
         {/* Dashboard */}
@@ -144,10 +137,8 @@ function App() {
         />
 
       </Routes>
-
     </BrowserRouter>
-
-  )
+  );
 }
 
-export default App
+export default App;
