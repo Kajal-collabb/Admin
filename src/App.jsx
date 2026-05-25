@@ -11,28 +11,22 @@ import Notifications from "./admin/pages/notifications";
 import PremiumContent from "./admin/pages/premium-content";
 import Navbar from "./admin/components/navbar";
 import Sidebar from "./admin/components/sidebar";
-
+import Profile from "./admin/pages/Profile";
 function Layout({ children }) {
-
   return (
-
-    <div className="flex">
-
+    // Add 'dark:bg-slate-950' here. 
+    // This makes the entire page background dark when mode is active.
+    <div className="flex min-h-screen bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
       <Sidebar />
-
-      <div className="flex-1 min-h-screen bg-gray-100">
-
+      <div className="flex-1 flex flex-col">
         <Navbar />
-
-        <div className="p-6">
+        {/* Make this wrapper grow to fill the screen */}
+        <main className="flex-1 p-6 transition-colors duration-300">
           {children}
-        </div>
-
+        </main>
       </div>
-
     </div>
-
-  )
+  );
 }
 
 function App() {
@@ -57,7 +51,14 @@ function App() {
             </Layout>
           }
         />
-
+<Route
+          path="/Profile"
+          element={
+            <Layout>
+              <Profile />
+            </Layout>
+          }
+        />
         {/* Users */}
 
         <Route

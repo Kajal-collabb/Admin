@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  /* Keep your existing theme variables here */
+  --color-brand-primary: #4338ca;
+  --spacing-128: 32rem;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Add this line to enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
