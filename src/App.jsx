@@ -11,28 +11,26 @@ import Notifications from "./admin/pages/notifications";
 import PremiumContent from "./admin/pages/premium-content";
 import Navbar from "./admin/components/navbar";
 import Sidebar from "./admin/components/sidebar";
-
+import Profile from "./admin/pages/Profile";
 function Layout({ children }) {
-
   return (
-
-    <div className="flex">
-
+    // 1. h-screen aur overflow-hidden lagana zaroori hai
+    <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
+      
+      {/* Sidebar fixed rahega */}
       <Sidebar />
-
-      <div className="flex-1 min-h-screen bg-gray-100">
-
+      
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Navbar fixed rahega */}
         <Navbar />
-
-        <div className="p-6">
+        
+        {/* Sirf yeh main content scroll hoga */}
+        <main className="flex-1 overflow-y-auto p-6 transition-colors duration-300">
           {children}
-        </div>
-
+        </main>
       </div>
-
     </div>
-
-  )
+  );
 }
 
 function App() {
@@ -57,7 +55,14 @@ function App() {
             </Layout>
           }
         />
-
+<Route
+          path="/Profile"
+          element={
+            <Layout>
+              <Profile />
+            </Layout>
+          }
+        />
         {/* Users */}
 
         <Route
