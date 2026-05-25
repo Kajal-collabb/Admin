@@ -24,6 +24,16 @@ const Sidebar = () => {
           <Link to="/payments">Payments</Link>
         </li>
 
+ <li>
+          <Link to="/newsletters">Newsletters</Link>
+        </li>
+         <li>
+          <Link to="/notifications">Notifications</Link>
+        </li>
+         <li>
+          <Link to="/premium-content">Premium Content</Link>
+        </li>
+
         <li>
           <Link to="/reports">Reports</Link>
         </li>
@@ -31,7 +41,9 @@ const Sidebar = () => {
         <li>
           <Link to="/settings">Settings</Link>
         </li>
-
+<li>
+            <Link to="/">Logout</Link>
+</li>
       </ul>
 
     </div>

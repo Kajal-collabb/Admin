@@ -2,18 +2,18 @@ import React from "react";
 import {
   Users,
   IndianRupee,
-  Bell,
   UserCheck,
   AlertCircle,
+  TrendingUp,
+  FileText,
 } from "lucide-react";
-
 import {
+  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
@@ -22,30 +22,10 @@ import {
 } from "recharts";
 
 const stats = [
-  {
-    title: "Total Teachers",
-    value: "12,540",
-    icon: Users,
-    color: "bg-blue-100",
-  },
-  {
-    title: "Active Users",
-    value: "10,210",
-    icon: UserCheck,
-    color: "bg-green-100",
-  },
-  {
-    title: "Pending Payments",
-    value: "1,240",
-    icon: AlertCircle,
-    color: "bg-yellow-100",
-  },
-  {
-    title: "Total Revenue",
-    value: "₹24.5L",
-    icon: IndianRupee,
-    color: "bg-purple-100",
-  },
+  { title: "Total Teachers", value: "12,540", icon: Users, bg: "bg-indigo-50", iconColor: "text-indigo-600" },
+  { title: "Active Users", value: "10,210", icon: UserCheck, bg: "bg-emerald-50", iconColor: "text-emerald-600" },
+  { title: "Pending Payments", value: "1,240", icon: AlertCircle, bg: "bg-amber-50", iconColor: "text-amber-600" },
+  { title: "Total Revenue", value: "₹24.5L", icon: IndianRupee, bg: "bg-violet-50", iconColor: "text-violet-600" },
 ];
 
 const monthlyData = [
@@ -57,30 +37,19 @@ const monthlyData = [
   { month: "Jun", payments: 7000 },
 ];
 
-const pieData = [
+const paymentStatus = [
   { name: "Paid", value: 75 },
   { name: "Pending", value: 20 },
   { name: "Failed", value: 5 },
 ];
 
-const COLORS = ["#22c55e", "#facc15", "#ef4444"];
+const COLORS = ["#4f46e5", "#10b981", "#f59e0b"];
 
 const activities = [
-  {
-    user: "Ramesh Kumar",
-    action: "Completed Payment",
-    time: "2 mins ago",
-  },
-  {
-    user: "Sita Devi",
-    action: "Uploaded Documents",
-    time: "10 mins ago",
-  },
-  {
-    user: "Admin",
-    action: "Posted New Notice",
-    time: "1 hour ago",
-  },
+  { user: "Ramesh Kumar", action: "Completed salary payment", time: "2 mins ago" },
+  { user: "Sita Devi", action: "Uploaded teacher documents", time: "10 mins ago" },
+  { user: "Admin", action: "Posted new notice", time: "1 hour ago" },
+  { user: "Vikram Singh", action: "New teacher registration", time: "2 hours ago" },
 ];
 
 const notices = [
@@ -90,183 +59,102 @@ const notices = [
   "District Meeting Schedule",
 ];
 
+const teachers = [
+  { name: "Vikram Singh", email: "vikram@gmail.com", date: "12 Jun 2024" },
+  { name: "Anita Sharma", email: "anita@gmail.com", date: "11 Jun 2024" },
+  { name: "Deepak Verma", email: "deepak@gmail.com", date: "10 Jun 2024" },
+];
+
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h2 className="text-4xl font-bold text-black">
-            Government Teachers Dashboard
-          </h2>
-
-          <p className="text-gray-500 mt-1">
-            Welcome back, Administrator
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button className="bg-white p-3 rounded-xl shadow-sm">
-            <Bell />
-          </button>
-
-          <div className="bg-white px-5 py-3 rounded-xl shadow-sm font-medium">
-            Admin User
-          </div>
-        </div>
+    <div className="min-h-screen bg-slate-50 p-8">
+      {/* HEADER */}
+      <div className="mb-8">
+        <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Government Teachers Dashboard</h1>
+        <p className="text-slate-500 mt-2 font-medium">Welcome back, Administrator 👋</p>
       </div>
 
-      {/* Stats */}
+      {/* STATS */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
         {stats.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow-sm border p-6 flex items-center justify-between"
-          >
-            <div>
-              <p className="text-gray-500 text-sm">
-                {item.title}
-              </p>
-
-              <h3 className="text-4xl font-bold mt-3">
-                {item.value}
-              </h3>
-            </div>
-
-            <div className={`${item.color} p-5 rounded-2xl`}>
-              <item.icon size={30} />
+          <div key={index} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-slate-500 font-semibold text-sm">{item.title}</p>
+                <h2 className="text-3xl font-bold mt-2 text-slate-900">{item.value}</h2>
+                <div className="flex items-center gap-1 mt-3 text-emerald-600 text-xs font-bold">
+                  <TrendingUp size={14} />
+                  <span>8.5% growth</span>
+                </div>
+              </div>
+              <div className={`${item.bg} p-4 rounded-2xl`}>
+                <item.icon size={24} className={item.iconColor} />
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Charts */}
+      {/* CHARTS */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
-        
-        {/* Monthly Payments */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6 xl:col-span-2">
-          <h3 className="text-2xl font-semibold mb-6">
-            Monthly Payments
-          </h3>
-
-          <ResponsiveContainer width="100%" height={320}>
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 xl:col-span-2">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-slate-900">Monthly Payments</h2>
+            <button className="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-medium text-sm hover:bg-slate-200">This Year</button>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
             <BarChart data={monthlyData}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-
-              <Bar
-                dataKey="payments"
-                fill="#2563eb"
-                radius={[10, 10, 0, 0]}
-              />
+              <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
+              <YAxis stroke="#94a3b8" fontSize={12} />
+              <Tooltip cursor={{fill: '#f1f5f9'}} />
+              <Bar dataKey="payments" fill="#4f46e5" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Payment Status */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6">
-          <h3 className="text-2xl font-semibold mb-6">
-            Payment Status
-          </h3>
-
-          <ResponsiveContainer width="100%" height={320}>
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">Payment Status</h2>
+          <ResponsiveContainer width="100%" height={300}>
             <PieChart>
-              <Pie
-                data={pieData}
-                dataKey="value"
-                outerRadius={110}
-                label
-              >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={index}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
+              <Pie data={paymentStatus} dataKey="value" innerRadius={70} outerRadius={100} paddingAngle={5} cornerRadius={10}>
+                {paymentStatus.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)}
               </Pie>
-
               <Tooltip />
             </PieChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Activities & Notices */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        
-        {/* Activities */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6">
-          <h3 className="text-2xl font-semibold mb-6">
-            Recent Activities
-          </h3>
-
-          <div className="space-y-5">
-            {activities.map((activity, index) => (
-              <div
-                key={index}
-                className="flex justify-between border-b pb-4"
-              >
-                <div>
-                  <h4 className="font-semibold text-lg">
-                    {activity.user}
-                  </h4>
-
-                  <p className="text-gray-500 text-sm">
-                    {activity.action}
-                  </p>
+      {/* LOWER SECTION */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+        {activities.map((section, idx) => (
+          <div key={idx} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-bold text-slate-900">
+                {idx === 0 ? "Recent Activities" : idx === 1 ? "Latest Notices" : "Recent Teachers"}
+              </h2>
+              <button className="text-indigo-600 font-semibold text-sm">View All</button>
+            </div>
+            
+            <div className="space-y-4">
+              {idx === 0 && activities.map((act, i) => (
+                <div key={i} className="flex justify-between border-b border-slate-50 pb-3 last:border-0">
+                  <div><h4 className="font-semibold text-slate-900">{act.user}</h4><p className="text-slate-500 text-xs">{act.action}</p></div>
+                  <span className="text-xs text-slate-400">{act.time}</span>
                 </div>
-
-                <span className="text-sm text-gray-400">
-                  {activity.time}
-                </span>
-              </div>
-            ))}
+              ))}
+              {idx === 1 && notices.map((n, i) => (
+                <div key={i} className="p-4 rounded-2xl bg-indigo-50 text-indigo-900 text-sm font-medium">{n}</div>
+              ))}
+              {idx === 2 && teachers.map((t, i) => (
+                <div key={i} className="flex items-center gap-4 border-b border-slate-50 pb-3">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-600">{t.name.charAt(0)}</div>
+                  <div><h4 className="font-semibold text-slate-900">{t.name}</h4><p className="text-xs text-slate-500">{t.email}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* Notices */}
-        <div className="bg-white rounded-2xl shadow-sm border p-6">
-          <h3 className="text-2xl font-semibold mb-6">
-            Latest Notices
-          </h3>
-
-          <div className="space-y-4">
-            {notices.map((notice, index) => (
-              <div
-                key={index}
-                className="p-5 rounded-2xl bg-blue-50 hover:bg-blue-100 transition"
-              >
-                <p className="font-medium text-lg">
-                  {notice}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* User Growth */}
-      <div className="bg-white rounded-2xl shadow-sm border p-6 mt-8">
-        <h3 className="text-2xl font-semibold mb-6">
-          User Growth
-        </h3>
-
-        <ResponsiveContainer width="100%" height={320}>
-          <LineChart data={monthlyData}>
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-
-            <Line
-              type="monotone"
-              dataKey="payments"
-              stroke="#16a34a"
-              strokeWidth={4}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        ))}
       </div>
     </div>
   );

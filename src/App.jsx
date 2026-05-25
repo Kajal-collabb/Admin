@@ -6,7 +6,9 @@ import Users from "./admin/pages/Users";
 import Payments from "./admin/pages/payments";
 import Reports from "./admin/pages/reports";
 import Settings from "./admin/pages/settings";
-
+import Newsletters from "./admin/pages/newsletters";
+import Notifications from "./admin/pages/notifications";
+import PremiumContent from "./admin/pages/premium-content";
 import Navbar from "./admin/components/navbar";
 import Sidebar from "./admin/components/sidebar";
 
@@ -63,6 +65,32 @@ function App() {
           element={
             <Layout>
               <Users />
+            </Layout>
+          }
+        />
+
+  <Route
+          path="/newsletters"
+          element={
+            <Layout>
+              <Newsletters />
+            </Layout>
+          }
+        />
+  <Route
+          path="/notifications"
+          element={
+            <Layout>
+              <Notifications />
+            </Layout>
+          }
+        />
+
+          <Route
+          path="/premium-content"
+          element={
+            <Layout>
+              <PremiumContent />
             </Layout>
           }
         />
