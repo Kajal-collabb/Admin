@@ -12,6 +12,7 @@ import PremiumContent from "./admin/pages/premium-content";
 import Navbar from "./admin/components/navbar";
 import Sidebar from "./admin/components/sidebar";
 import Profile from "./admin/pages/Profile";
+import Activities from "./admin/pages/activities";
 function Layout({ children }) {
   return (
     // 1. h-screen aur overflow-hidden lagana zaroori hai
@@ -60,6 +61,15 @@ function App() {
           element={
             <Layout>
               <Profile />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/activities"
+          element={
+            <Layout>
+              <Activities />
             </Layout>
           }
         />

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, Users, CreditCard, Mail, Bell, FileText, BarChart3, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, CreditCard, Mail, Bell, FileText, BarChart3, Settings, LogOut, ListChecks } from "lucide-react";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -11,6 +11,7 @@ const Sidebar = () => {
     { name: "Premium", path: "/premium-content", icon: <FileText size={22} /> },
     { name: "Reports", path: "/reports", icon: <BarChart3 size={22} /> },
     { name: "Settings", path: "/settings", icon: <Settings size={22} /> },
+        { name: "Activities", path: "/activities", icon: <ListChecks size={22} /> },
   ];
 
   return (
