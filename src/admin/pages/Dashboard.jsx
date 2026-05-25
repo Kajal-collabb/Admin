@@ -14,6 +14,8 @@ import {
   Bell,
   UserPlus,
   ClipboardList,
+  X,
+  BarChart3,
 } from "lucide-react";
 
 import {
@@ -216,12 +218,176 @@ function ViewAllDropdown({ title }) {
   );
 }
 
+/* ================= SMALL REPORT MODAL ================= */
+
+function ReportModal({ open, setOpen }) {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+
+        {/* HEADER */}
+        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600">
+
+          <div>
+            <h2 className="text-sm font-bold text-white">
+              User Growth Report
+            </h2>
+
+            <p className="text-blue-100 text-[10px] mt-1">
+              Analytics Overview
+            </p>
+          </div>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"
+          >
+            <X size={14} className="text-white" />
+          </button>
+        </div>
+
+        {/* CONTENT */}
+        <div className="p-3">
+
+          {/* CHART */}
+          <div className="bg-slate-50 dark:bg-slate-950 rounded-xl p-3 border border-slate-200 dark:border-slate-800 mb-3">
+
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                Monthly Analysis
+              </h3>
+
+              <div className="flex items-center gap-1 text-blue-600 text-[10px] font-semibold">
+                <BarChart3 size={11} />
+                Analytics
+              </div>
+            </div>
+
+            <ResponsiveContainer width="100%" height={150}>
+              <LineChart data={monthlyData}>
+
+                <XAxis
+                  dataKey="month"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "#94a3b8", fontSize: 8 }}
+                />
+
+                <YAxis
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "#94a3b8", fontSize: 8 }}
+                />
+
+                <Tooltip
+                  contentStyle={{
+                    borderRadius: "8px",
+                    border: "none",
+                    backgroundColor: "#0f172a",
+                    color: "#fff",
+                    fontSize: "10px",
+                  }}
+                />
+
+                <Line
+                  type="monotone"
+                  dataKey="payments"
+                  stroke="#ff7a00"
+                  strokeWidth={2}
+                  dot={{
+                    r: 2,
+                    strokeWidth: 1,
+                    fill: "#fff",
+                  }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* TABLE */}
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden mb-3">
+
+            <div className="bg-slate-100 dark:bg-slate-800 px-3 py-2">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                Monthly Breakdown
+              </h3>
+            </div>
+
+            <div className="max-h-32 overflow-y-auto">
+
+              <table className="w-full">
+
+                <thead className="bg-slate-50 dark:bg-slate-900">
+                  <tr>
+                    <th className="text-left px-3 py-2 text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+                      Month
+                    </th>
+
+                    <th className="text-left px-3 py-2 text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+                      Users
+                    </th>
+
+                    <th className="text-left px-3 py-2 text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {monthlyData.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="border-t border-slate-100 dark:border-slate-800"
+                    >
+                      <td className="px-3 py-2 text-[11px] text-slate-700 dark:text-slate-300">
+                        {item.month}
+                      </td>
+
+                      <td className="px-3 py-2 text-[11px] text-slate-700 dark:text-slate-300">
+                        {item.payments}
+                      </td>
+
+                      <td className="px-3 py-2">
+                        <span className="px-2 py-1 rounded-full bg-green-100 text-green-600 text-[8px] font-semibold">
+                          Growth
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* BUTTONS */}
+          <div className="flex justify-end gap-2">
+
+            <button className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+              Export
+            </button>
+
+            <button className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] font-semibold hover:scale-105 transition">
+              Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ================= DASHBOARD ================= */
 
 export default function Dashboard() {
+
+  const [reportOpen, setReportOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-5 transition-colors duration-300">
-      
+
       {/* HEADER */}
       <div className="mb-6">
         <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -269,7 +435,7 @@ export default function Dashboard() {
 
       {/* CHART SECTION */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-6">
-        
+
         {/* BAR CHART */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 xl:col-span-2 h-[520px]">
 
@@ -424,7 +590,7 @@ export default function Dashboard() {
 
       {/* LOWER SECTION */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-6">
-        
+
         {/* RECENT ACTIVITIES */}
         <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800">
           <div className="flex items-center justify-between mb-4">
@@ -533,20 +699,23 @@ export default function Dashboard() {
 
       {/* USER GROWTH */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 h-[500px]">
-        
+
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white">
             User Growth
           </h2>
 
-          <button className="text-blue-600 font-semibold text-xs">
+          <button
+            onClick={() => setReportOpen(true)}
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold shadow-lg hover:scale-105 transition-all duration-300"
+          >
             View Report
           </button>
         </div>
 
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={monthlyData}>
-            
+
             <XAxis
               dataKey="month"
               axisLine={false}
@@ -587,6 +756,12 @@ export default function Dashboard() {
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      {/* REPORT MODAL */}
+      <ReportModal
+        open={reportOpen}
+        setOpen={setReportOpen}
+      />
     </div>
   );
 }
