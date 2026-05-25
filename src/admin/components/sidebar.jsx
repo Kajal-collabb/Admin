@@ -41,7 +41,9 @@ const Sidebar = () => {
         <li>
           <Link to="/settings">Settings</Link>
         </li>
-
+<li>
+            <Link to="/">Logout</Link>
+</li>
       </ul>
 
     </div>
