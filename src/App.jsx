@@ -10,22 +10,23 @@ import Notifications from "./admin/pages/notifications";
 import PremiumContent from "./admin/pages/premium-content";
 import Navbar from "./admin/components/navbar";
 import Sidebar from "./admin/components/sidebar";
-
+import Profile from "./admin/pages/Profile";
 function Layout({ children }) {
   return (
-    <div className="flex w-full min-h-screen bg-[#f8f9fa] overflow-x-hidden">
-      {/* Sidebar Left Side Fixed */}
+    // 1. h-screen aur overflow-hidden lagana zaroori hai
+    <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
+      
+      {/* Sidebar fixed rahega */}
       <Sidebar />
-
-      {/* Right Side Frame */}
-      <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Common Navbar / Main Header */}
+      
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Navbar fixed rahega */}
         <Navbar />
-
-        {/* Dynamic Page Content Wrapper */}
-        <div className="p-6 md:p-8 flex-1">
+        
+        {/* Sirf yeh main content scroll hoga */}
+        <main className="flex-1 overflow-y-auto p-6 transition-colors duration-300">
           {children}
-        </div>
+        </main>
       </div>
     </div>
   );
@@ -36,15 +37,95 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-        <Route path="/users" element={<Layout><Users /></Layout>} />
-        <Route path="/newsletters" element={<Layout><Newsletters /></Layout>} />
-        <Route path="/notifications" element={<Layout><Notifications /></Layout>} />
-        <Route path="/premium-content" element={<Layout><PremiumContent /></Layout>} />
-        <Route path="/payments" element={<Layout><Payments /></Layout>} />
-        <Route path="/reports" element={<Layout><Reports /></Layout>} />
-        <Route path="/settings" element={<Layout><Settings /></Layout>} />
+
+        {/* Dashboard */}
+
+        <Route
+          path="/dashboard"
+          element={
+            <Layout>
+              <Dashboard />
+            </Layout>
+          }
+        />
+<Route
+          path="/Profile"
+          element={
+            <Layout>
+              <Profile />
+            </Layout>
+          }
+        />
+        {/* Users */}
+
+        <Route
+          path="/users"
+          element={
+            <Layout>
+              <Users />
+            </Layout>
+          }
+        />
+
+  <Route
+          path="/newsletters"
+          element={
+            <Layout>
+              <Newsletters />
+            </Layout>
+          }
+        />
+  <Route
+          path="/notifications"
+          element={
+            <Layout>
+              <Notifications />
+            </Layout>
+          }
+        />
+
+          <Route
+          path="/premium-content"
+          element={
+            <Layout>
+              <PremiumContent />
+            </Layout>
+          }
+        />
+
+        {/* Payments */}
+
+        <Route
+          path="/payments"
+          element={
+            <Layout>
+              <Payments />
+            </Layout>
+          }
+        />
+
+        {/* Reports */}
+
+        <Route
+          path="/reports"
+          element={
+            <Layout>
+              <Reports />
+            </Layout>
+          }
+        />
+
+        {/* Settings */}
+
+        <Route
+          path="/settings"
+          element={
+            <Layout>
+              <Settings />
+            </Layout>
+          }
+        />
+
       </Routes>
     </BrowserRouter>
   );

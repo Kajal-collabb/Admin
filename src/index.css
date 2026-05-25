@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  /* Keep your existing theme variables here */
+  --color-brand-primary: #4338ca;
+  --spacing-128: 32rem;
+  --font-sans: "Inter", sans-serif;
+}
+/* Scrollbar hide karne ke liye */
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hidden-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* Add this line to enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
