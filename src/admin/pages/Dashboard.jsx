@@ -98,6 +98,7 @@ const activities = [
     user: "Sita Devi",
     action: "Uploaded teacher documents",
     time: "10 mins ago",
+    
   },
   {
     user: "Admin",
