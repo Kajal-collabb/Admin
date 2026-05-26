@@ -27,10 +27,10 @@ export default function Newsletters() {
 
   // System Stats
   const stats = [
-    { id: 1, title: 'Total Newsletters', value: '184', icon: BookOpen, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-    { id: 2, title: 'Premium Newsletters', value: '65', icon: Crown, color: 'text-amber-500', bg: 'bg-amber-50' },
-    { id: 3, title: 'Downloads', value: '24,890', icon: Download, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { id: 4, title: 'Email Subscribers', value: '5,120', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
+    { id: 1, title: 'Total Newsletters', value: '184', icon: BookOpen, color: 'text-indigo-600', bg: 'bg-indigo-50 dark:bg-indigo-950/20' },
+    { id: 2, title: 'Premium Newsletters', value: '65', icon: Crown, color: 'text-amber-500', bg: 'bg-amber-50 dark:bg-amber-950/20' },
+    { id: 3, title: 'Downloads', value: '24,890', icon: Download, color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/20' },
+    { id: 4, title: 'Email Subscribers', value: '5,120', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-950/20' },
   ];
 
   // Rich Dummy Data Base
@@ -131,18 +131,18 @@ export default function Newsletters() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 pb-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-white pb-12 transition-colors duration-300">
       
       {/* HEADER SECTION */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 lg:px-8 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="bg-white dark:bg-slate-950 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-10 px-4 lg:px-8 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-[#4c35de]">Teacher Newsletters & Circulars</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Manage, upload, and distribute newsletters to educators.</p>
+          <h1 className="text-2xl font-bold text-[#4c35de] dark:text-indigo-400">Teacher Newsletters & Circulars</h1>
+          <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">Manage, upload, and distribute newsletters to educators.</p>
         </div>
         
         <button 
           onClick={() => setIsUploadOpen(true)}
-          className="bg-[#4c35de] hover:bg-[#3a25b8] text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-indigo-200 flex items-center justify-center gap-2 transition-all duration-200"
+          className="bg-[#4c35de] hover:bg-[#3a25b8] text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-indigo-200 dark:shadow-none flex items-center justify-center gap-2 transition-all duration-200"
         >
           <Plus className="w-5 h-5" />
           Upload Newsletter
@@ -156,13 +156,13 @@ export default function Newsletters() {
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.id} className="bg-white p-4 lg:p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+              <div key={stat.id} className="bg-white dark:bg-slate-950 p-4 lg:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex items-center gap-4">
                 <div className={`p-3 rounded-xl ${stat.bg} ${stat.color} shrink-0`}>
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-xs lg:text-sm font-medium text-gray-400 block">{stat.title}</p>
-                  <h4 className="text-xl lg:text-2xl font-bold text-gray-900 mt-0.5">{stat.value}</h4>
+                  <p className="text-xs lg:text-sm font-medium text-gray-400 dark:text-slate-500 block">{stat.title}</p>
+                  <h4 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mt-0.5">{stat.value}</h4>
                 </div>
               </div>
             );
@@ -170,7 +170,7 @@ export default function Newsletters() {
         </div>
 
         {/* FILTERS, SEARCH & VIEW MODE SWITCHER */}
-        <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col lg:flex-row gap-4 items-center justify-between">
+        <div className="bg-white dark:bg-slate-950 p-4 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col lg:flex-row gap-4 items-center justify-between">
           <div className="relative w-full lg:w-80">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input 
@@ -178,7 +178,7 @@ export default function Newsletters() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by title, keywords, tags..." 
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:border-[#4c35de] text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#4c35de] text-sm text-gray-900 dark:text-white"
             />
           </div>
           
@@ -186,7 +186,7 @@ export default function Newsletters() {
             <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none">
               <button 
                 onClick={() => setActiveCategory('All')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${activeCategory === 'All' ? 'bg-[#4c35de] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${activeCategory === 'All' ? 'bg-[#4c35de] text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
               >
                 All Topics
               </button>
@@ -194,7 +194,7 @@ export default function Newsletters() {
                 <button 
                   key={idx}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${activeCategory === cat ? 'bg-[#4c35de] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${activeCategory === cat ? 'bg-[#4c35de] text-white' : 'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'}`}
                 >
                   {cat}
                 </button>
@@ -202,17 +202,17 @@ export default function Newsletters() {
             </div>
 
             {/* Layout Toggle Buttons */}
-            <div className="flex items-center border border-gray-200 rounded-xl p-1 bg-gray-50 shrink-0">
+            <div className="flex items-center border border-gray-200 dark:border-slate-700 rounded-xl p-1 bg-gray-50 dark:bg-slate-900 shrink-0">
               <button 
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white text-[#4c35de] shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-slate-800 text-[#4c35de] dark:text-indigo-400 shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
                 title="Grid View"
               >
                 <Grid className="w-4 h-4" />
               </button>
               <button 
                 onClick={() => setViewMode('table')}
-                className={`p-1.5 rounded-lg transition-all ${viewMode === 'table' ? 'bg-white text-[#4c35de] shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-1.5 rounded-lg transition-all ${viewMode === 'table' ? 'bg-white dark:bg-slate-800 text-[#4c35de] dark:text-indigo-400 shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
                 title="Table View"
               >
                 <List className="w-4 h-4" />
@@ -228,7 +228,7 @@ export default function Newsletters() {
           <div className="xl:col-span-2">
             
             {filteredNewsletters.length === 0 ? (
-              <div className="bg-white border rounded-2xl p-12 text-center text-gray-400">
+              <div className="bg-white dark:bg-slate-950 border dark:border-slate-800 rounded-2xl p-12 text-center text-gray-400">
                 <FileText className="w-12 h-12 mx-auto mb-3 opacity-50" />
                 <p className="font-medium">No newsletters matching your selection.</p>
               </div>
@@ -240,7 +240,7 @@ export default function Newsletters() {
                   <div 
                     key={nl.id} 
                     onClick={() => { setSelectedNewsletter(nl); setIsPreviewOpen(true); }}
-                    className="bg-white border-2 border-zinc-200 hover:border-zinc-400 rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col justify-between group relative overflow-hidden"
+                    className="bg-white dark:bg-slate-950 border-2 border-zinc-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col justify-between group relative overflow-hidden"
                     style={{ backgroundImage: 'linear-gradient(rgba(250,249,246,0.2) 95%, rgba(0,0,0,0.05) 100%)' }}
                   >
                     {nl.isPinned && (
@@ -251,22 +251,22 @@ export default function Newsletters() {
 
                     <div className="space-y-3">
                       {/* Category and premium indicator */}
-                      <div className="flex justify-between items-center text-[11px] font-bold tracking-wide uppercase text-gray-400">
+                      <div className="flex justify-between items-center text-[11px] font-bold tracking-wide uppercase text-gray-400 dark:text-slate-500">
                         <span>{nl.category}</span>
                         {nl.accessType === 'Premium' && (
-                          <span className="flex items-center gap-0.5 text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-md">
+                          <span className="flex items-center gap-0.5 text-amber-600 bg-amber-50 dark:bg-amber-950/40 px-1.5 py-0.5 rounded-md border dark:border-amber-900/40">
                             <Crown className="w-3 h-3 fill-amber-500" /> Premium
                           </span>
                         )}
                       </div>
 
                       {/* Title with News Paper Vintage Typography feel */}
-                      <h3 className="font-serif text-lg font-bold text-gray-900 leading-snug tracking-tight group-hover:text-[#4c35de] transition-colors line-clamp-2 pt-1 border-t-2 border-zinc-900">
+                      <h3 className="font-serif text-lg font-bold text-gray-900 dark:text-white leading-snug tracking-tight group-hover:text-[#4c35de] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 pt-1 border-t-2 border-zinc-900 dark:border-slate-700">
                         {nl.title}
                       </h3>
 
                       {/* Image Stream styled like a news press block */}
-                      <div className="w-full h-36 bg-gray-100 rounded overflow-hidden border border-zinc-300 relative">
+                      <div className="w-full h-36 bg-gray-100 dark:bg-slate-900 rounded overflow-hidden border border-zinc-300 dark:border-slate-800 relative">
                         <img 
                           src={nl.thumbnail} 
                           alt="" 
@@ -276,17 +276,17 @@ export default function Newsletters() {
                       </div>
 
                       {/* Short clipping Description */}
-                      <p className="text-xs text-gray-600 line-clamp-3 leading-relaxed font-sans">
+                      <p className="text-xs text-gray-600 dark:text-slate-400 line-clamp-3 leading-relaxed font-sans">
                         {nl.description}
                       </p>
                     </div>
 
                     {/* Bottom Metadata row */}
-                    <div className="mt-4 pt-3 border-t border-dashed border-zinc-300 flex items-center justify-between text-[11px] text-gray-400 font-medium">
+                    <div className="mt-4 pt-3 border-t border-dashed border-zinc-300 dark:border-slate-700 flex items-center justify-between text-[11px] text-gray-400 dark:text-slate-500 font-medium">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" /> {nl.uploadDate}
                       </span>
-                      <span className="bg-zinc-100 text-zinc-700 font-bold px-2 py-0.5 rounded">
+                      <span className="bg-zinc-100 dark:bg-slate-800 text-zinc-700 dark:text-slate-300 font-bold px-2 py-0.5 rounded">
                         📥 {nl.downloads.toLocaleString()}
                       </span>
                     </div>
@@ -296,14 +296,14 @@ export default function Newsletters() {
             ) : (
               
               /* 📋 COMPREHENSIVE TABLE VIEW */
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div className="p-5 border-b border-gray-100">
-                  <h3 className="font-bold text-gray-900 text-lg">Active Publications Table</h3>
+              <div className="bg-white dark:bg-slate-950 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div className="p-5 border-b border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/50">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg">Active Publications Table</h3>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      <tr className="bg-gray-50 dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 text-xs font-semibold text-gray-500 dark:text-slate-500 uppercase tracking-wider">
                         <th className="p-4 pl-6">Cover / Title</th>
                         <th className="p-4">Category</th>
                         <th className="p-4">Upload Date</th>
@@ -313,39 +313,39 @@ export default function Newsletters() {
                         <th className="p-4 text-center pr-6">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100 text-sm">
+                    <tbody className="divide-y divide-gray-100 dark:divide-slate-800 text-sm">
                       {filteredNewsletters.map((nl) => (
-                        <tr key={nl.id} className="hover:bg-gray-50/70 transition-colors">
+                        <tr key={nl.id} className="hover:bg-gray-50/70 dark:hover:bg-slate-900/40 transition-colors">
                           <td className="p-4 pl-6 flex items-center gap-3 max-w-xs">
-                            <img src={nl.thumbnail} alt="" className="w-10 h-14 object-cover rounded shadow-sm border border-gray-200 shrink-0" />
+                            <img src={nl.thumbnail} alt="" className="w-10 h-14 object-cover rounded shadow-sm border border-gray-200 dark:border-slate-800 shrink-0 bg-white dark:bg-slate-900" />
                             <div>
                               <div className="flex items-center gap-1.5">
-                                <span className="font-semibold text-gray-900 line-clamp-1">{nl.title}</span>
-                                {nl.isPinned && <Pin className="w-3.5 h-3.5 text-[#4c35de] fill-[#4c35de] shrink-0" />}
+                                <span className="font-semibold text-gray-900 dark:text-white line-clamp-1">{nl.title}</span>
+                                {nl.isPinned && <Pin className="w-3.5 h-3.5 text-[#4c35de] dark:text-indigo-400 fill-[#4c35de] dark:fill-indigo-400 shrink-0" />}
                               </div>
-                              <p className="text-xs text-gray-400 line-clamp-1 mt-0.5">{nl.description}</p>
+                              <p className="text-xs text-gray-400 dark:text-slate-400 line-clamp-1 mt-0.5">{nl.description}</p>
                             </div>
                           </td>
                           <td className="p-4 whitespace-nowrap">
-                            <span className="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-xs font-medium">{nl.category}</span>
+                            <span className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-1 rounded-md text-xs font-medium">{nl.category}</span>
                           </td>
-                          <td className="p-4 text-gray-500 whitespace-nowrap">{nl.uploadDate}</td>
+                          <td className="p-4 text-gray-500 dark:text-slate-400 whitespace-nowrap">{nl.uploadDate}</td>
                           <td className="p-4">
-                            <span className={`inline-flex items-center gap-1 text-xs font-semibold ${nl.accessType === 'Premium' ? 'text-amber-600' : 'text-emerald-600'}`}>
+                            <span className={`inline-flex items-center gap-1 text-xs font-semibold ${nl.accessType === 'Premium' ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                               {nl.accessType === 'Premium' && <Crown className="w-3 h-3 fill-amber-500" />}
                               {nl.accessType}
                             </span>
                           </td>
-                          <td className="p-4 font-medium text-gray-700">{nl.downloads.toLocaleString()}</td>
+                          <td className="p-4 font-medium text-gray-700 dark:text-slate-300">{nl.downloads.toLocaleString()}</td>
                           <td className="p-4">
-                            <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full text-xs font-medium border border-emerald-200">{nl.status}</span>
+                            <span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full text-xs font-medium border border-emerald-200 dark:border-emerald-900/50">{nl.status}</span>
                           </td>
                           <td className="p-4 pr-6">
                             <div className="flex items-center justify-center gap-1">
-                              <button onClick={() => { setSelectedNewsletter(nl); setIsPreviewOpen(true); }} className="p-1.5 hover:bg-gray-100 text-gray-500 hover:text-gray-800 rounded-lg transition-colors"><Eye className="w-4 h-4" /></button>
-                              <button className="p-1.5 hover:bg-gray-100 text-gray-500 hover:text-blue-600 rounded-lg transition-colors"><Mail className="w-4 h-4" /></button>
-                              <button className="p-1.5 hover:bg-gray-100 text-gray-500 hover:text-amber-600 rounded-lg transition-colors"><Edit2 className="w-4 h-4" /></button>
-                              <button className="p-1.5 hover:bg-gray-100 text-gray-500 hover:text-rose-600 rounded-lg transition-colors"><Trash2 className="w-4 h-4" /></button>
+                              <button onClick={() => { setSelectedNewsletter(nl); setIsPreviewOpen(true); }} className="p-1.5 hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white rounded-lg transition-colors"><Eye className="w-4 h-4" /></button>
+                              <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-colors"><Mail className="w-4 h-4" /></button>
+                              <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 rounded-lg transition-colors"><Edit2 className="w-4 h-4" /></button>
+                              <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-500 dark:text-rose-600 dark:text-rose-400 rounded-lg transition-colors"><Trash2 className="w-4 h-4" /></button>
                             </div>
                           </td>
                         </tr>
@@ -361,27 +361,27 @@ export default function Newsletters() {
           <div className="space-y-6">
             
             {/* Newsletter Distribution Configuration */}
-            <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
-              <div className="flex items-center gap-2 border-b border-gray-50 pb-3">
-                <Mail className="w-5 h-5 text-[#4c35de]" />
-                <h3 className="font-bold text-gray-900">Newsletter Distribution</h3>
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 border-b border-gray-50 dark:border-slate-800 pb-3">
+                <Mail className="w-5 h-5 text-[#4c35de] dark:text-indigo-400" />
+                <h3 className="font-bold text-gray-900 dark:text-white">Newsletter Distribution</h3>
               </div>
-              <p className="text-xs text-gray-500">Quick dispatch updates or target communication modes.</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">Quick dispatch updates or target communication modes.</p>
               
               <div className="space-y-2">
-                <button className="w-full bg-gray-50 hover:bg-indigo-50 border border-gray-100 hover:border-indigo-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 flex items-center justify-between group transition-all">
+                <button className="w-full bg-gray-50 dark:bg-slate-900 hover:bg-indigo-50 dark:hover:bg-slate-800 border border-gray-100 dark:border-slate-800 hover:border-indigo-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 dark:text-slate-300 flex items-center justify-between group transition-all">
                   <span>📧 Send email broadcast to all users</span>
-                  <span className="text-gray-400 group-hover:text-[#4c35de]">&rarr;</span>
+                  <span className="text-gray-400 group-hover:text-[#4c35de] dark:group-hover:text-indigo-400">&rarr;</span>
                 </button>
-                <button className="w-full bg-gray-50 hover:bg-amber-50 border border-gray-100 hover:border-amber-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 flex items-center justify-between group transition-all">
+                <button className="w-full bg-gray-50 dark:bg-slate-900 hover:bg-amber-50 dark:hover:bg-slate-800 border border-gray-100 dark:border-slate-800 hover:border-amber-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 dark:text-slate-300 flex items-center justify-between group transition-all">
                   <span className="flex items-center gap-1">👑 Dispatch to Premium Users Only</span>
                   <span className="text-gray-400 group-hover:text-amber-600">&rarr;</span>
                 </button>
-                <button className="w-full bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 flex items-center justify-between group transition-all">
+                <button className="w-full bg-gray-50 dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-slate-800 border border-gray-100 dark:border-slate-800 hover:border-blue-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 dark:text-slate-300 flex items-center justify-between group transition-all">
                   <span>⏱️ Access Scheduled Emails Queue</span>
                   <span className="text-gray-400 group-hover:text-blue-600">&rarr;</span>
                 </button>
-                <button className="w-full bg-gray-50 hover:bg-purple-50 border border-gray-100 hover:border-purple-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 flex items-center justify-between group transition-all">
+                <button className="w-full bg-gray-50 dark:bg-slate-900 hover:bg-purple-50 dark:hover:bg-slate-800 border border-gray-100 dark:border-slate-800 hover:border-purple-200 p-3 rounded-xl text-left text-xs font-semibold text-gray-700 dark:text-slate-300 flex items-center justify-between group transition-all">
                   <span>🔔 Trigger Push Notifications alert</span>
                   <span className="text-gray-400 group-hover:text-purple-600">&rarr;</span>
                 </button>
@@ -389,31 +389,31 @@ export default function Newsletters() {
             </div>
 
             {/* Download Analytics Widget */}
-            <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
-              <div className="flex items-center gap-2 border-b border-gray-50 pb-3">
-                <BarChart2 className="w-5 h-5 text-[#4c35de]" />
-                <h3 className="font-bold text-gray-900">Download Analytics</h3>
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 border-b border-gray-50 dark:border-slate-800 pb-3">
+                <BarChart2 className="w-5 h-5 text-[#4c35de] dark:text-indigo-400" />
+                <h3 className="font-bold text-gray-900 dark:text-white">Download Analytics</h3>
               </div>
 
               {/* Graphic Mock */}
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 h-28 flex items-end gap-2 justify-between border border-indigo-100/50">
-                <div className="w-full bg-indigo-200 h-[30%] rounded-sm" title="Jan"></div>
-                <div className="w-full bg-indigo-300 h-[55%] rounded-sm" title="Feb"></div>
-                <div className="w-full bg-[#4c35de] h-[85%] rounded-sm" title="Mar"></div>
-                <div className="w-full bg-indigo-400 h-[45%] rounded-sm" title="Apr"></div>
-                <div className="w-full bg-indigo-300 h-[70%] rounded-sm" title="May"></div>
-                <div className="w-full bg-[#3a25b8] h-[95%] rounded-sm" title="June"></div>
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-slate-900 dark:to-slate-850 rounded-xl p-4 h-28 flex items-end gap-2 justify-between border border-indigo-100/50 dark:border-slate-800">
+                <div className="w-full bg-indigo-200 dark:bg-slate-700 h-[30%] rounded-sm" title="Jan"></div>
+                <div className="w-full bg-indigo-300 dark:bg-slate-600 h-[55%] rounded-sm" title="Feb"></div>
+                <div className="w-full bg-[#4c35de] dark:bg-indigo-500 h-[85%] rounded-sm" title="Mar"></div>
+                <div className="w-full bg-indigo-400 dark:bg-slate-500 h-[45%] rounded-sm" title="Apr"></div>
+                <div className="w-full bg-indigo-300 dark:bg-slate-600 h-[70%] rounded-sm" title="May"></div>
+                <div className="w-full bg-[#3a25b8] dark:bg-indigo-600 h-[95%] rounded-sm" title="June"></div>
               </div>
               
               <div className="space-y-3 pt-1">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Most Downloaded PDFs</h4>
+                <h4 className="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider">Most Downloaded PDFs</h4>
                 {analyticsDownloads.map((item, index) => (
-                  <div key={index} className="flex justify-between items-start text-xs border-b border-gray-50 pb-2 last:border-none last:pb-0">
+                  <div key={index} className="flex justify-between items-start text-xs border-b border-gray-50 dark:border-slate-800 pb-2 last:border-none last:pb-0">
                     <div>
-                      <p className="font-semibold text-gray-800 line-clamp-1">{item.title}</p>
-                      <span className="text-gray-400 text-[11px]">{item.count}</span>
+                      <p className="font-semibold text-gray-800 dark:text-slate-200 line-clamp-1">{item.title}</p>
+                      <span className="text-gray-400 dark:text-slate-500 text-[11px]">{item.count}</span>
                     </div>
-                    <span className="text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded text-[10px] shrink-0">{item.conversion}</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/30 px-1.5 py-0.5 rounded text-[10px] shrink-0">{item.conversion}</span>
                   </div>
                 ))}
               </div>
@@ -426,82 +426,82 @@ export default function Newsletters() {
       {/* ➕ DYNAMIC UPLOAD FORM MODAL */}
       {isUploadOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto flex flex-col">
+          <div className="bg-white rounded-2xl shadow-xl max-w-xl w-full max-h-[90vh] overflow-y-auto flex flex-col bg-white dark:bg-slate-950 border dark:border-slate-800">
             
-            <div className="p-5 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
-              <h2 className="text-lg font-bold text-gray-900">Upload New Newsletter</h2>
-              <button onClick={() => setIsUploadOpen(false)} className="p-1 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600"><X className="w-5 h-5" /></button>
+            <div className="p-5 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between sticky top-0 bg-white dark:bg-slate-950 z-10">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Upload New Newsletter</h2>
+              <button onClick={() => setIsUploadOpen(false)} className="p-1 hover:bg-gray-100 dark:hover:bg-slate-900 rounded-lg text-gray-400 hover:text-gray-600"><X className="w-5 h-5" /></button>
             </div>
 
             <form className="p-6 space-y-4 flex-1" onSubmit={(e) => e.preventDefault()}>
               <div>
-                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Newsletter Title *</label>
-                <input type="text" placeholder="e.g., Monthly Primary Education Update" className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#4c35de]" required />
+                <label className="block text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider mb-1">Newsletter Title *</label>
+                <input type="text" placeholder="e.g., Monthly Primary Education Update" className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] text-gray-900 dark:text-white" required />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Short Description *</label>
-                <textarea rows="2" placeholder="Provide a brief snapshot of content..." className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#4c35de]" required></textarea>
+                <label className="block text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider mb-1">Short Description *</label>
+                <textarea rows="2" placeholder="Provide a brief snapshot of content..." className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] text-gray-900 dark:text-white" required></textarea>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Category *</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] bg-white">
+                  <label className="block text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider mb-1">Category *</label>
+                  <select className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] text-gray-900 dark:text-white">
                     {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Publish Date</label>
-                  <input type="date" className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#4c35de]" />
+                  <label className="block text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider mb-1">Publish Date</label>
+                  <input type="date" className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] text-gray-900 dark:text-white" />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <span className="text-sm font-semibold text-gray-700 flex items-center">Access Setting</span>
+              <div className="grid grid-cols-2 gap-4 bg-gray-50 dark:bg-slate-900 p-3 rounded-xl border border-gray-100 dark:border-slate-800">
+                <span className="text-sm font-semibold text-gray-700 dark:text-slate-300 flex items-center">Access Setting</span>
                 <div className="flex items-center justify-end gap-2">
-                  <span className="text-xs font-medium text-gray-500">Free</span>
+                  <span className="text-xs font-medium text-gray-500 dark:text-slate-400">Free</span>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" className="sr-only peer" />
                     <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#4c35de]"></div>
                   </label>
-                  <span className="text-xs font-medium text-amber-600 flex items-center gap-0.5"><Crown className="w-3 h-3 fill-amber-500" /> Premium</span>
+                  <span className="text-xs font-medium text-amber-600 dark:text-amber-400 flex items-center gap-0.5"><Crown className="w-3 h-3 fill-amber-500" /> Premium</span>
                 </div>
               </div>
 
               {/* Functional Interactive Upload Slots */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <label className="border-2 border-dashed border-gray-200 hover:border-[#4c35de] rounded-xl p-4 text-center cursor-pointer transition-colors bg-gray-50/50 block">
+                <label className="border-2 border-dashed border-gray-200 dark:border-slate-800 hover:border-[#4c35de] rounded-xl p-4 text-center cursor-pointer transition-colors bg-gray-50/50 dark:bg-slate-900/50 block">
                   <input type="file" accept=".pdf" className="hidden" onChange={(e) => handleFileChange(e, 'pdf')} />
                   <UploadCloud className="w-6 h-6 text-gray-400 mx-auto mb-1" />
-                  <span className="block text-xs font-bold text-gray-700">
+                  <span className="block text-xs font-bold text-gray-700 dark:text-slate-300">
                     {uploadedPdf ? "✓ PDF Loaded" : "Upload PDF Booklet"}
                   </span>
-                  <span className="text-[10px] text-gray-400 block mt-0.5 truncate max-w-full">
+                  <span className="text-[10px] text-gray-400 dark:text-slate-500 block mt-0.5 truncate max-w-full">
                     {uploadedPdf ? `${uploadedPdf.name} (${uploadedPdf.size})` : "Max size 25MB"}
                   </span>
                 </label>
 
-                <label className="border-2 border-dashed border-gray-200 hover:border-[#4c35de] rounded-xl p-4 text-center cursor-pointer transition-colors bg-gray-50/50 block">
+                <label className="border-2 border-dashed border-gray-200 dark:border-slate-800 hover:border-[#4c35de] rounded-xl p-4 text-center cursor-pointer transition-colors bg-gray-50/50 dark:bg-slate-900/50 block">
                   <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'img')} />
                   <UploadCloud className="w-6 h-6 text-gray-400 mx-auto mb-1" />
-                  <span className="block text-xs font-bold text-gray-700">
+                  <span className="block text-xs font-bold text-gray-700 dark:text-slate-300">
                     {uploadedThumbnail ? "✓ Image Loaded" : "Thumbnail Cover"}
                   </span>
-                  <span className="text-[10px] text-gray-400 block mt-0.5 truncate max-w-full">
+                  <span className="text-[10px] text-gray-400 dark:text-slate-500 block mt-0.5 truncate max-w-full">
                     {uploadedThumbnail ? uploadedThumbnail.name : "PNG or JPG target"}
                   </span>
                 </label>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1">Tags (Comma Separated)</label>
-                <input type="text" placeholder="e.g., circular, primary, rules" className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#4c35de]" />
+                <label className="block text-xs font-bold text-gray-600 dark:text-slate-400 uppercase tracking-wider mb-1">Tags (Comma Separated)</label>
+                <input type="text" placeholder="e.g., circular, primary, rules" className="w-full px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-[#4c35de] text-gray-900 dark:text-white" />
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
-                <button type="button" onClick={() => setIsUploadOpen(false)} className="px-4 py-2 text-sm font-semibold text-gray-500 hover:bg-gray-100 rounded-xl transition-colors">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-[#4c35de] hover:bg-[#3a25b8] text-white rounded-xl text-sm font-semibold shadow-md shadow-indigo-100 transition-colors">Publish Document</button>
+              <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-end gap-2">
+                <button type="button" onClick={() => setIsUploadOpen(false)} className="px-4 py-2 text-sm font-semibold text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-xl transition-colors">Cancel</button>
+                <button type="submit" className="px-5 py-2 bg-[#4c35de] hover:bg-[#3a25b8] text-white rounded-xl text-sm font-semibold shadow-md shadow-indigo-100 dark:shadow-none transition-colors">Publish Document</button>
               </div>
             </form>
 
@@ -512,29 +512,29 @@ export default function Newsletters() {
       {/* 📄 DETAILED NEWS-CUTTING PREVIEW MODAL */}
       {isPreviewOpen && selectedNewsletter && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-white dark:bg-slate-950 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col border dark:border-slate-800">
             
             {/* Modal Header */}
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+            <div className="p-4 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between bg-gray-50 dark:bg-slate-900">
               <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-[#4c35de]" />
-                <span className="text-xs font-bold uppercase text-gray-400 tracking-wide">{selectedNewsletter.category}</span>
+                <FileText className="w-5 h-5 text-[#4c35de] dark:text-indigo-400" />
+                <span className="text-xs font-bold uppercase text-gray-400 dark:text-slate-500 tracking-wide">{selectedNewsletter.category}</span>
               </div>
-              <button onClick={() => { setIsPreviewOpen(false); setSelectedNewsletter(null); }} className="p-1 hover:bg-gray-200 rounded-lg text-gray-400 hover:text-gray-600"><X className="w-5 h-5" /></button>
+              <button onClick={() => { setIsPreviewOpen(false); setSelectedNewsletter(null); }} className="p-1 hover:bg-gray-200 dark:hover:bg-slate-800 rounded-lg text-gray-400 hover:text-gray-600"><X className="w-5 h-5" /></button>
             </div>
             
             {/* Main Content Details Wrapper */}
-            <div className="p-6 overflow-y-auto space-y-6 bg-amber-50/20">
+            <div className="p-6 overflow-y-auto space-y-6 bg-amber-50/20 dark:bg-slate-950/40 flex-1">
               
               {/* Retro Press Header Layout */}
-              <div className="text-center space-y-2 border-b-4 border-double border-zinc-800 pb-4">
-                <h2 className="font-serif font-black text-2xl sm:text-3xl text-gray-900 leading-tight tracking-tight">
+              <div className="text-center space-y-2 border-b-4 border-double border-zinc-800 dark:border-slate-700 pb-4">
+                <h2 className="font-serif font-black text-2xl sm:text-3xl text-gray-900 dark:text-white leading-tight tracking-tight">
                   {selectedNewsletter.title}
                 </h2>
-                <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-gray-500">
+                <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-gray-500 dark:text-slate-400">
                   <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> Date: {selectedNewsletter.uploadDate}</span>
                   <span>•</span>
-                  <span>Access: <strong className={selectedNewsletter.accessType === 'Premium' ? 'text-amber-600' : 'text-emerald-600'}>{selectedNewsletter.accessType}</strong></span>
+                  <span>Access: <strong className={selectedNewsletter.accessType === 'Premium' ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}>{selectedNewsletter.accessType}</strong></span>
                   <span>•</span>
                   <span>Downloads: <strong>{selectedNewsletter.downloads}</strong></span>
                 </div>
@@ -542,15 +542,15 @@ export default function Newsletters() {
 
               {/* Editorial Content Layout */}
               <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
-                <div className="md:col-span-2 border border-zinc-300 p-1 bg-white shadow-sm rounded">
+                <div className="md:col-span-2 border border-zinc-300 dark:border-slate-700 p-1 bg-white dark:bg-slate-900 shadow-sm rounded">
                   <img src={selectedNewsletter.thumbnail} alt="" className="w-full h-auto object-cover rounded" />
                 </div>
                 <div className="md:col-span-3 space-y-4">
-                  <h4 className="font-serif font-bold text-gray-800 text-base border-b border-zinc-200 pb-1">CIRCULAR ABSTRACT</h4>
-                  <p className="text-sm text-gray-700 font-sans leading-relaxed text-justify first-letter:text-3xl first-letter:font-bold first-letter:text-gray-900 first-letter:mr-1">
+                  <h4 className="font-serif font-bold text-gray-800 dark:text-slate-200 text-base border-b border-zinc-200 dark:border-slate-700 pb-1">CIRCULAR ABSTRACT</h4>
+                  <p className="text-sm text-gray-700 dark:text-slate-300 font-sans leading-relaxed text-justify first-letter:text-3xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-white first-letter:mr-1">
                     {selectedNewsletter.description}
                   </p>
-                  <p className="text-xs text-gray-500 leading-normal bg-zinc-50 p-3 rounded-xl border border-zinc-100">
+                  <p className="text-xs text-gray-500 dark:text-slate-400 leading-normal bg-zinc-50 dark:bg-slate-900 p-3 rounded-xl border border-zinc-100 dark:border-slate-800">
                     * This is an official digital asset deployment. Verified administrators can trigger immediate notification streams or dispatch direct email templates targeting respective parameters.
                   </p>
                 </div>
@@ -560,7 +560,7 @@ export default function Newsletters() {
               <div className="flex flex-wrap items-center gap-1.5 pt-2">
                 <Tag className="w-3.5 h-3.5 text-gray-400 mr-1" />
                 {selectedNewsletter.tags?.map((tag, i) => (
-                  <span key={i} className="bg-zinc-100 border border-zinc-200 text-zinc-600 text-[11px] px-2.5 py-0.5 rounded-full font-medium">
+                  <span key={i} className="bg-zinc-100 dark:bg-slate-800 border border-zinc-200 dark:border-slate-700 text-zinc-600 dark:text-slate-400 text-[11px] px-2.5 py-0.5 rounded-full font-medium">
                     #{tag}
                   </span>
                 ))}
@@ -568,14 +568,14 @@ export default function Newsletters() {
             </div>
 
             {/* Modal Actions Footer */}
-            <div className="p-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center gap-3">
+            <div className="p-4 bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 flex justify-end items-center gap-3">
               <button 
                 onClick={() => { setIsPreviewOpen(false); setSelectedNewsletter(null); }}
-                className="px-4 py-2 border border-gray-200 hover:bg-gray-100 text-gray-600 rounded-xl text-xs font-semibold transition-colors"
+                className="px-4 py-2 border border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-600 dark:text-slate-400 rounded-xl text-xs font-semibold transition-colors"
               >
                 Close Preview
               </button>
-              <button className="bg-[#4c35de] hover:bg-[#3a25b8] text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-indigo-100 transition-colors">
+              <button className="bg-[#4c35de] hover:bg-[#3a25b8] text-white px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-indigo-100 dark:shadow-none transition-colors">
                 <Download className="w-4 h-4" /> Download Booklet PDF
               </button>
             </div>
